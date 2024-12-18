@@ -1,0 +1,12 @@
+src
+├── app
+│   ├── user-details
+│   │   ├── user-details.component.ts|.html
+│   │   └── user-detail-form
+│   │       └── user-detail-form.component.ts|.html
+│   ├── shared
+│   │   ├── user-detail.service.ts
+│   │   └── user-detail.model.ts
+│   └── app.module.ts
+├── styles.css (global css rules)
+└── index.html (cdn path for bootstrap & fa icons)ng
