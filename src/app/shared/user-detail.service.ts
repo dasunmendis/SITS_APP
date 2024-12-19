@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from '../../environments/environment.development';
 import { UserDetail } from './user-detail.model';
 import { NgForm } from "@angular/forms";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,10 @@ export class UserDetailService {
     form.form.reset()
     this.formData = new UserDetail()
     this.formSubmitted = false
+  }
+
+  addRecord(formData: FormData): Observable<any> {
+    return this.http.post<any>("http://localhost:5156/api/auth/register", formData);
   }
 
 }

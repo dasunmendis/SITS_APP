@@ -8,12 +8,16 @@ import { UserDetailFormComponent } from './user-details/user-detail-form/user-de
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { UserRegisterDialogComponent } from './user-register-dialog/user-register-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserDetailsComponent,
-    UserDetailFormComponent
+    UserDetailFormComponent,
+    UserRegisterDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,8 +28,11 @@ import { FormsModule } from '@angular/forms';
     ToastrModule.forRoot(), // ToastrModule added
     //UserDetailsComponent,
     //UserDetailFormComponent
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

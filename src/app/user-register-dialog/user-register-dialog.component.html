@@ -1,0 +1,69 @@
+<h2 mat-dialog-title>Add New Record</h2>
+<mat-dialog-content>
+  <form #form="ngForm" (submit)="onSubmit(form)" novalidate autocomplete="off">
+    <input type="hidden" name="id" [value]="service.formData.id">
+    <div class="mb-3">
+      <label>Title</label>&nbsp;
+      <input type="radio" id="Mr" #title="ngModel" name="title" [(ngModel)]="service.formData.title" value="Mr" required>
+      <label for="Mr">Mr</label> &nbsp;
+      <input type="radio" id="Mrs" #title="ngModel" name="title" [(ngModel)]="service.formData.title" value="Mrs" required>
+      <label for="Mrs">Mrs</label>
+    </div>
+    <div class="mb-3">
+      <label>First Name</label>
+      <input class="form-control form-control-lg" placeholder="First Name" #firstName="ngModel" name="firstName"
+        [(ngModel)]="service.formData.firstName" required>
+    </div>
+    <div class="mb-3">
+      <label>Last Name</label>
+      <input class="form-control form-control-lg" placeholder="Last Name" #lastName="ngModel" name="lastName"
+        [(ngModel)]="service.formData.lastName" required>
+    </div>
+    <div class="mb-3">
+      <label>Email</label>
+      <input class="form-control form-control-lg" placeholder="Email" #email="ngModel" name="email"
+        [(ngModel)]="service.formData.email" required>
+    </div>
+    <div class="mb-3">
+      <label>Password</label>
+      <input class="form-control form-control-lg" placeholder="Password" #password="ngModel" name="password"
+        type="password" [(ngModel)]="service.formData.password" required>
+    </div>
+    <div class="mb-3">
+      <label>Remark</label>
+      <input class="form-control form-control-lg" placeholder="Remark" #remark="ngModel" name="remark"
+        [(ngModel)]="service.formData.remark" required>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-6">
+        <label>Gender</label>
+        <input class="form-control form-control-lg" placeholder="Gender" #gender="ngModel" name="gender"
+          [(ngModel)]="service.formData.gender" required>
+      </div>
+      <div class="mb-3 col-6">
+        <label>Date of Birth</label>
+        <input type="date" class="form-control form-control-lg" placeholder="DD/MM/YY" #dateOfBirth="ngModel"
+          name="dateOfBirth" [(ngModel)]="service.formData.dateOfBirth" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" class="form-control" name="image" (change)="onImageSelect($event)"
+          accept="image/*" required>
+        <div *ngIf="imagePreview">
+          <h5>Image Preview:</h5>
+          <img [src]="imagePreview" alt="Image Preview" class="img-thumbnail" style="max-width: 200px;">
+        </div>
+      </div>
+    </div>
+    <div class="d-grid">
+      <button mat-button type="submit" class="btn btn-lg btn-success">
+        Submit
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
