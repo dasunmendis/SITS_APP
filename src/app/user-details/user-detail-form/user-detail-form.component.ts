@@ -16,6 +16,24 @@ export class UserDetailFormComponent {
   constructor(public service: UserDetailService, private toastr: ToastrService) {
   }
 
+  imagePreview: string | ArrayBuffer | null = null; // For image preview
+
+  onImageSelect(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.service.formData.image = file;
+
+      // Generate a preview of the image
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   onSubmit(form: NgForm) {
     this.service.formSubmitted = true
     if (form.valid) {
