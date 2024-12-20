@@ -1,0 +1,123 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: "Inter", sans-serif;
+  }
+  
+  /* form validation */
+  .error-feedback {
+    font-size: 0.9rem;
+    color: crimson;
+    margin: 0.3rem !important;
+    margin-top: 0.1rem !important;
+  }
+
+  .dashboard-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .dashboard-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .user-details {
+    margin-top: 10px;
+  }
+  
+  .logout-button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .dashboard-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .dashboard-section {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+  }
+  
+  .dashboard-section h2 {
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  .timestamp {
+    color: gray;
+    font-size: 0.9em;
+    margin-left: 10px;
+  }
+  
+
+  /* ****************************************************** */
+  /* General Body Styling */
+body {
+  background-color: #f8f9fa; /* Light gray for subtle background */
+}
+
+/* Title Section */
+.bg-body-secondary {
+  background-color: #f5f5f5; /* Soft background color */
+  border-radius: 10px;
+}
+
+h1.display-4 {
+  font-size: 2.5rem;
+}
+
+/* Buttons */
+.btn-danger {
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  color: #fff;
+}
+
+/* Card Styling */
+.card {
+  border-radius: 12px;
+}
+
+.card-header {
+  border-bottom: 0;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  h1.display-4 {
+    font-size: 1.75rem;
+  }
+
+  .btn-sm {
+    font-size: 0.9rem;
+  }
+}
+/* ***************************************************** */

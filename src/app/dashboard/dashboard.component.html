@@ -1,0 +1,53 @@
+  <!-- <div class="bg-body-secondary text-center py-5 rounded-2">
+    <div style="text-align: right;">
+      <button class="btn btn-dark" (click)="onLogout()">Logout</button>
+    </div>
+    <h1 class="dispay-6 fw-bold">User Registry</h1>
+  </div>
+  <div class="row mt-5">
+    <div class="col-6">
+      <app-details/>
+    </div>
+    <div class="col-6">
+      <app-update/>
+    </div>
+  </div> -->
+
+  <div class="bg-body-secondary text-center py-5 rounded-2 shadow-sm">
+    <!-- Logout Button -->
+    <div class="d-flex justify-content-end pe-3">
+      <button class="btn btn-danger btn-sm px-4 py-2" (click)="onLogout()">Logout</button>
+    </div>
+  
+    <!-- Title Section -->
+    <h1 class="display-4 fw-bold text-primary mt-3">User Registry</h1>
+    <p class="text-muted fs-5">Manage user details and update records efficiently.</p>
+  </div>
+  
+  <!-- Main Content -->
+  <div class="row mt-5 gx-4">
+    <!-- Details Section -->
+    <div class="col-lg-6 col-md-12 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white text-center">
+          <h5 class="mb-0">User Details</h5>
+        </div>
+        <div class="card-body">
+          <app-details></app-details>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Update Section -->
+    <div class="col-lg-6 col-md-12 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-success text-white text-center">
+          <h5 class="mb-0">Update User</h5>
+        </div>
+        <div class="card-body">
+          <app-update></app-update>
+        </div>
+      </div>
+    </div>
+  </div>
+  
