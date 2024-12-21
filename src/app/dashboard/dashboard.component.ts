@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DetailsComponent } from '../user/details/details.component';
 import { UpdateComponent } from '../user/update/update.component';
+import { UserDetail } from '../shared/models/user-detail.model';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +13,10 @@ import { UpdateComponent } from '../user/update/update.component';
   styles: ``
 })
 export class DashboardComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, public authService: AuthService  ) { }
 
   onLogout() {
-    localStorage.removeItem('token');
+    this.authService.clearToken();
     this.router.navigateByUrl('/signin');
   }
 }

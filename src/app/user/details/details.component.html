@@ -4,9 +4,10 @@
      *ngFor="let ud of service.list">
       <div class="flex-grow-1 mouse-hover"
       (click)="populateForm(ud)">
-        <div class="fw-bold">{{ud.firstName}}</div>
+        <div class="fw-bold">{{ud.title ? ud.title + '.' : ''}} {{ud.firstName}} {{ud.lastName ? ud.lastName : ''}} {{ud.gender ? '(' + ud.gender + ')' : ''}}</div>
         <div>{{ud.email}}</div>
         <div class="fw-bold">{{ud.dateOfBirth | date: 'dd/MM/yyyy'}}</div>
+        <div>{{ud.remark}}</div>
       </div>
       <span class="text-secondary">
         <i class="fa-solid fa-trash-can fa-lg mouse-hover"

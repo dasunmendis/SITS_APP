@@ -52,37 +52,46 @@ passwordMatchValidator: ValidatorFn = (control: AbstractControl): null => {
   onSubmit() {
     this.isSubmitted = true;
     if (this.form.valid) {
+      console.log('Submitting form data:', this.form.value); // Debugging
       this.service.createUser(this.form.value)
         .subscribe({
           next: (res: any) => {
-            if (res.succeeded) {
+            console.log("Response:", res);
+            if (res.flag) {
               this.form.reset();
               this.isSubmitted = false;
               this.toastr.success('New user created!', 'Registration Successful')
+            } else {
+              console.log('Unexpected response:', res);
+              this.toastr.error('Unexpected response from server.', 'Registration Failed');
             }
           },
           error: err => {
+            console.error('API error:', err); // Log the full error for debugging
             if (err.error.errors)
               err.error.errors.forEach((x: any) => {
                 switch (x.code) {
                   case "DuplicateUserName":
+                    this.toastr.error('Username is already taken.', 'Registration Failed');
                     break;
-
                   case "DuplicateEmail":
                     this.toastr.error('Email is already taken.', 'Registration Failed')
                     break;
-
                   default:
+                    console.log('Unhandled error code:', x);
                     this.toastr.error('Contact the developer', 'Registration Failed')
-                    console.log(x);
                     break;
                 }
-              })
-            else
+              });
+            else {
               console.log('error:',err);
+              this.toastr.error('Unexpected error occurred.', 'Registration Failed');
+            }
           }
-
         });
+    } else {
+      console.log('Form validation errors:', this.form.errors);
+      this.toastr.error('Form is invalid. Please correct the errors.', 'Submission Failed');
     }
   }
 

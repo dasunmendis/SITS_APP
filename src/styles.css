@@ -121,3 +121,11 @@ h1.display-4 {
   }
 }
 /* ***************************************************** */
+
+.fixed-header {
+  position: sticky; /* Makes the element fixed within the viewport */
+  top: 0;           /* Sticks the element to the top of the page */
+  z-index: 1000;    /* Ensures the element appears above other content */
+  overflow: hidden; /* Prevents scrolling within this element */
+  background-color: inherit; /* Retains the background styling */
+}

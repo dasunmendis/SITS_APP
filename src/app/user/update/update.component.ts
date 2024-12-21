@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   providers: [DatePipe]
 })
 export class UpdateComponent {
-  constructor(public service: UserService, private toastr: ToastrService,public datePipe: DatePipe) {
+  constructor(public service: UserService, private toastr: ToastrService, public datePipe: DatePipe) {
   }
 
   // // Model property
@@ -48,23 +48,43 @@ export class UpdateComponent {
     }
   }
 
-  formatDate(value: string) {
-    if (value) {
-      const formattedDate = this.datePipe.transform(value, 'dd/MM/yyyy'); 
-      this.service.formData.dateOfBirth = formattedDate || value; 
+  // formatDate(value: string) {
+  //   if (value) {
+  //     const formattedDate = this.datePipe.transform(value, 'dd/MM/yyyy'); 
+  //     this.service.formData.dateOfBirth = formattedDate || value; 
+  //   }
+  // }
+
+  formatDate(event: string) {
+    if (event) {
+      // Attempt to parse the input and format as 'dd/MM/yyyy'
+      const parsedDate = new Date(event);
+      if (!isNaN(parsedDate.getTime())) {
+        this.service.formData.dateOfBirth = this.datePipe.transform(parsedDate, 'dd/MM/yyyy') || '';
+      } else {
+        // Handle invalid date input if needed
+        console.error('Invalid date format');
+      }
     }
   }
 
-  onSubmit(form: NgForm) {
-    this.service.formSubmitted = true
-    if (form.valid) {
-      if (this.service.formData.id == 0)
-        this.insertRecord(form)
-      else
-      console.log('Form submitted:', form.value);
-        this.updateRecord(form)
-    }
+  // onSubmit(form: NgForm) {
+  //   this.service.formSubmitted = true
+  //   if (form.valid) {
+  //     if (this.service.formData.id == 0)
+  //       this.insertRecord(form)
+  //     else
+  //       this.updateRecord(form)
+  //   } 
+  // }
 
+  onSubmit(form: NgForm) {
+    this.service.formSubmitted = true;
+    if(form.valid && form.dirty) {
+      this.updateRecord(form)
+    } else {
+      this.toastr.error("Sorry, No value changes detected.", "Submit Failed.")
+    }
   }
 
   insertRecord(form: NgForm) {
@@ -78,16 +98,26 @@ export class UpdateComponent {
         error: err => { console.log(err) }
       })
   }
+
   updateRecord(form: NgForm) {
+    console.log('Submitting updated data:', this.service.putUserDetail); // Debugging
     this.service.putUserDetail()
       .subscribe({
         next: res => {
+          console.log('API Response:', res); // Debugging
           this.service.list = res as UserDetail[]
           this.service.resetForm(form)
           this.toastr.info('Updated successfully', 'User Detail Register')
         },
-        error: err => { console.log(err) }
-      })
+        error: err => { 
+          console.error('API Error:', err); // Log full error for debugging
+          if (err.status === 400) {
+            this.toastr.error('Bad request: Please check the submitted data.', 'Update Failed');
+          } else {
+            this.toastr.error('An unexpected error occurred.', 'Update Failed');
+          }
+        }
+      });
    }
 
 }
